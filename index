@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta de Roblox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #0084ff;
+            text-align: center;
+        }
+        .question {
+            margin-bottom: 1.5rem;
+        }
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #0084ff;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0066cc;
+        }
+        #success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4caf50;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: center;
+            font-size: 1.2rem;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Encuesta de Roblox</h1>
+        <form id="survey-form">
+            <div class="question">
+                <label for="q1">1. ¿Cuál es tu nombre de usuario en Roblox?</label>
+                <input type="text" id="q1" name="q1" required>
+            </div>
+            <div class="question">
+                <label for="q2">2. ¿Cuántos años tienes?</label>
+                <input type="text" id="q2" name="q2" required>
+            </div>
+            <div class="question">
+                <label for="q3">3. ¿Cuál es tu juego favorito en Roblox?</label>
+                <input type="text" id="q3" name="q3" required>
+            </div>
+            <div class="question">
+                <label for="q4">4. ¿Qué tipo de juegos prefieres?</label>
+                <select id="q4" name="q4" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="aventura">Aventura</option>
+                    <option value="simulacion">Simulación</option>
+                    <option value="accion">Acción</option>
+                    <option value="rol">Rol</option>
+                    <option value="deportes">Deportes</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q5">5. ¿Con qué frecuencia juegas en Roblox?</label>
+                <select id="q5" name="q5" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="diario">Todos los días</option>
+                    <option value="semanal">Varias veces a la semana</option>
+                    <option value="mensual">Algunas veces al mes</option>
+                    <option value="rara">Rara vez</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q6">6. ¿Has comprado Robux alguna vez?</label>
+                <select id="q6" name="q6" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q7">7. ¿Qué te gusta más de Roblox?</label>
+                <input type="text" id="q7" name="q7" required>
+            </div>
+            <div class="question">
+                <label for="q8">8. ¿Tienes amigos en Roblox?</label>
+                <select id="q8" name="q8" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="muchos">Muchos</option>
+                    <option value="algunos">Algunos</option>
+                    <option value="pocos">Pocos</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="question">
+                <label for="q9">9. ¿Qué mejorarías de Roblox?</label>
+                <input type="text" id="q9" name="q9" required>
+            </div>
+            <div class="question">
+                <label for="q10">10. ¿Recomendarías Roblox a un amigo?</label>
+                <select id="q10" name="q10" required>
+                    <option value="">Selecciona una opción</option>
+                    <option value="si">Sí</option>
+                    <option value="no">No</option>
+                    <option value="talvez">Tal vez</option>
+                </select>
+            </div>
+            <button type="submit">Enviar encuesta</button>
+        </form>
+    </div>
+
+    <div id="success-message">
+        ¡Has completado la encuesta. Se han depositado 50 Robux en tu cuenta.
+    </div>
+
+    <script>
+        document.getElementById('survey-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Mostrar mensaje de éxito
+            const successMessage = document.getElementById('success-message');
+            successMessage.style.display = 'block';
+            
+            // Ocultar el mensaje después de 5 segundos
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+                // Opcional: resetear el formulario
+                document.getElementById('survey-form').reset();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
