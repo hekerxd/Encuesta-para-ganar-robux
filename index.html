@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Encuesta de Roblox</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
+            background-color: #ffffff; /* blanco para que no queme */
+            color: #000000; /* negro puro para el texto */
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
+            padding: 2rem;
             margin: 0;
         }
         .container {
-            background-color: white;
+            width: 100%;
+            max-width: 600px;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            width: 100%;
-            max-width: 600px;
+            background-color: #ffffff;
         }
         h1 {
-            color: #0084ff;
             text-align: center;
+            margin-bottom: 2rem;
         }
         .question {
             margin-bottom: 1.5rem;
+            display: none; /* todas las preguntas ocultas al inicio */
         }
         label {
             display: block;
@@ -42,56 +43,51 @@
             box-sizing: border-box;
         }
         button {
-            background-color: #0084ff;
-            color: white;
+            background-color: #000000; /* negro para el botón */
+            color: #ffffff;
             border: none;
             padding: 0.75rem 1.5rem;
             border-radius: 5px;
             cursor: pointer;
-            display: block;
-            width: 100%;
             font-size: 1rem;
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #0066cc;
+            background-color: #333333;
         }
         #success-message {
             display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            margin-top: 2rem;
+            padding: 1.5rem;
             background-color: #4caf50;
             color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             text-align: center;
-            font-size: 1.2rem;
-            z-index: 1000;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <div class="container" role="main">
+    <div class="container">
         <h1>Encuesta de Roblox</h1>
-        <form id="survey-form" novalidate>
-            <div class="question">
-                <label for="q1">1. ¿Cuál es tu nombre de usuario en Roblox?</label>
-                <input type="text" id="q1" name="q1" required />
+        <form id="survey-form">
+            <div class="question" id="q1">
+                <label>1. ¿Cuál es tu nombre de usuario en Roblox?</label>
+                <input type="text" required />
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q2">2. ¿Cuántos años tienes?</label>
-                <input type="text" id="q2" name="q2" required />
+            <div class="question" id="q2">
+                <label>2. ¿Cuántos años tienes?</label>
+                <input type="text" required />
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q3">3. ¿Cuál es tu juego favorito en Roblox?</label>
-                <input type="text" id="q3" name="q3" required />
+            <div class="question" id="q3">
+                <label>3. ¿Cuál es tu juego favorito en Roblox?</label>
+                <input type="text" required />
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q4">4. ¿Qué tipo de juegos prefieres?</label>
-                <select id="q4" name="q4" required>
+            <div class="question" id="q4">
+                <label>4. ¿Qué tipo de juegos prefieres?</label>
+                <select required>
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="aventura">Aventura</option>
                     <option value="simulacion">Simulación</option>
@@ -99,78 +95,93 @@
                     <option value="rol">Rol</option>
                     <option value="deportes">Deportes</option>
                 </select>
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q5">5. ¿Con qué frecuencia juegas en Roblox?</label>
-                <select id="q5" name="q5" required>
+            <div class="question" id="q5">
+                <label>5. ¿Con qué frecuencia juegas en Roblox?</label>
+                <select required>
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="diario">Todos los días</option>
                     <option value="semanal">Varias veces a la semana</option>
                     <option value="mensual">Algunas veces al mes</option>
                     <option value="rara">Rara vez</option>
                 </select>
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q6">6. ¿Has comprado Robux alguna vez?</label>
-                <select id="q6" name="q6" required>
+            <div class="question" id="q6">
+                <label>6. ¿Has comprado Robux alguna vez?</label>
+                <select required>
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                 </select>
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q7">7. ¿Qué te gusta más de Roblox?</label>
-                <input type="text" id="q7" name="q7" required />
+            <div class="question" id="q7">
+                <label>7. ¿Qué te gusta más de Roblox?</label>
+                <input type="text" required />
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q8">8. ¿Tienes amigos en Roblox?</label>
-                <select id="q8" name="q8" required>
+            <div class="question" id="q8">
+                <label>8. ¿Tienes amigos en Roblox?</label>
+                <select required>
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="muchos">Muchos</option>
                     <option value="algunos">Algunos</option>
                     <option value="pocos">Pocos</option>
                     <option value="no">No</option>
                 </select>
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q9">9. ¿Qué mejorarías de Roblox?</label>
-                <input type="text" id="q9" name="q9" required />
+            <div class="question" id="q9">
+                <label>9. ¿Qué mejorarías de Roblox?</label>
+                <input type="text" required />
+                <button type="button" class="next-btn">Siguiente</button>
             </div>
-            <div class="question">
-                <label for="q10">10. ¿Recomendarías Roblox a un amigo?</label>
-                <select id="q10" name="q10" required>
+            <div class="question" id="q10">
+                <label>10. ¿Recomendarías Roblox a un amigo?</label>
+                <select required>
                     <option value="" disabled selected>Selecciona una opción</option>
                     <option value="si">Sí</option>
                     <option value="no">No</option>
                     <option value="talvez">Tal vez</option>
                 </select>
+                <button type="submit">Enviar encuesta</button>
             </div>
-            <button type="submit" id="submit-btn">Enviar encuesta</button>
         </form>
-    </div>
-
-    <div id="success-message" role="alert" aria-live="assertive">
-        ¡Has completado la encuesta. Se han depositado 50 Robux en tu cuenta.
+        <div id="success-message">¡Has completado la encuesta! 🎉</div>
     </div>
 
     <script>
-        const form = document.getElementById('survey-form');
-        const successMessage = document.getElementById('success-message');
-        const submitBtn = document.getElementById('submit-btn');
+        const questions = document.querySelectorAll('.question');
+        let current = 0;
+        questions[current].style.display = 'block';
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
+        const nextButtons = document.querySelectorAll('.next-btn');
+        nextButtons.forEach((btn, index) => {
+            btn.addEventListener('click', () => {
+                const input = questions[index].querySelector('input, select');
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    return;
+                }
+                questions[index].style.display = 'none';
+                current++;
+                questions[current].style.display = 'block';
+                window.scrollTo(0, document.body.scrollHeight); // baja la página al nuevo input
+            });
+        });
 
-            // Evitar múltiples envíos mientras se muestra mensaje
-            submitBtn.disabled = true;
-
-            successMessage.style.display = 'block';
-
-            setTimeout(() => {
-                successMessage.style.display = 'none';
-                form.reset();
-                submitBtn.disabled = false;
-            }, 5000);
+        document.getElementById('survey-form').addEventListener('submit', function(e){
+            e.preventDefault();
+            const input = questions[current].querySelector('input, select');
+            if (!input.checkValidity()) {
+                input.reportValidity();
+                return;
+            }
+            questions[current].style.display = 'none';
+            document.getElementById('success-message').style.display = 'block';
+            window.scrollTo(0, document.body.scrollHeight);
         });
     </script>
 </body>
